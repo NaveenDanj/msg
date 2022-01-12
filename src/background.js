@@ -23,6 +23,8 @@ async function createWindow() {
     },
   });
 
+  win.setMenuBarVisibility(false)
+
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
@@ -31,6 +33,7 @@ async function createWindow() {
     createProtocol("app");
     // Load the index.html when not in development
     win.loadURL("app://./index.html");
+    win.setMenu(null);
   }
 }
 
