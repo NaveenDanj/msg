@@ -3,7 +3,6 @@
   <v-row style="height : 100vh; overflow-y:hidden">
 
     <v-col cols="12" sm="4" lg="3" permanent>
-      
       <ChatSideBar v-if="false" />
       <Settings v-if="true" />
     </v-col>
