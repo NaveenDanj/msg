@@ -149,6 +149,13 @@
 
           </div>
 
+          <div class="d-flex justify-space-between pa-2 my-auto" >
+
+            <label class="font-weight-medium my-auto">Logout</label>
+            <v-btn @click="handleLogout" outlined color="red" class="white--text">Logout</v-btn>
+
+          </div>
+
 
         </v-expansion-panel-content>
 
@@ -190,12 +197,33 @@
 
 import EditAccount from '../components/Models/EditAccount.vue';
 import Request from '../components/Models/Request.vue';
+import { getAuth, signOut } from "firebase/auth";
 
 export default {
   
   components : {
     EditAccount,
     Request
+  },
+
+  methods : {
+
+    handleLogout(){
+
+      const auth = getAuth();
+
+      signOut(auth).then(() => {
+        this.$router.push('/login');
+        this.$store.commit('setIsLoggedIn' , false);
+        this.$store.commit('setCurrentUser' , null);
+      }).catch((error) => {
+        
+        console.log('msg : ' , error.message)
+        
+      });
+
+    }
+
   }
 
 }
