@@ -24,16 +24,36 @@
         </v-alert><br />
 
 
-        <v-form class="mt-0 pa-5">
+        <v-form ref="loginForm" class="mt-0 pa-5">
 
             <v-row no-gutters>
 
                 <v-col cols="12" md="12">
-                    <v-text-field v-model="form.email" outlined dense label="Email" placeholder="Enter Email"/>
+                    <v-text-field 
+                        v-model="form.email"
+                        outlined 
+                        dense 
+                        label="Email" 
+                        placeholder="Enter Email"
+                        :rules="[
+                            (v) => !!v || 'Email is required'
+                        ]"
+                    />
                 </v-col>
 
                 <v-col cols="12" md="12">
-                    <v-text-field v-model="form.password" type="password" outlined dense label="Password" placeholder="Enter Password"/>
+                    <v-text-field 
+                        v-model="form.password" 
+                        type="password" 
+                        outlined 
+                        dense 
+                        label="Password" 
+                        placeholder="Enter Password"
+                        :rules="[
+                            (v) => !!v || 'Password is required'
+                        ]"
+                    />
+
                     <v-checkbox
                         class="mt-2 mb-4"
                         label="Remember Me"
@@ -83,6 +103,10 @@ export default {
 
         handleLogin(){
 
+            if(!this.$refs.loginForm.validate()){
+                return;
+            }
+
             const auth = getAuth();
 
             signInWithEmailAndPassword(auth, this.form.email, this.form.password)
@@ -96,7 +120,6 @@ export default {
                 // const errorCode = error.code;
                 const errorMessage = error.message;
                 this.errorString = errorMessage;
-                console.log(errorMessage);
             });
 
 
