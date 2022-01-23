@@ -50,7 +50,7 @@
 
             <div>
               <label class="font-weight-medium">Name</label><br/>
-              <label style="font-size: 14px;">Adam Zampa</label>
+              <label style="font-size: 14px;">{{ this.$store.state.currentUser.displayName }}</label>
             </div>
 
             <div>
@@ -64,12 +64,12 @@
 
           <div class="mt-7">
             <label class="font-weight-medium">Email</label><br/>
-            <label style="font-size: 14px;">naveenhettiwaththa@gmail.com</label>
+            <label style="font-size: 14px;">{{ this.$store.state.currentUser.email }}</label>
           </div>
 
           <div class="mt-7">
             <label class="font-weight-medium">Description</label><br/>
-            <label style="font-size: 14px;">Pariatur aliquip cillum fugiat occaecat commodo do sunt reprehenderit. Esse sit ipsum sint ut commodo aute proident occaecat. Irure amet esse labore laboris in non eu ut fugiat enim ipsum aute esse. Id deserunt pariatur dolor sit tempor eiusmod eu quis deserunt nisi sunt.</label>
+            <label style="font-size: 14px;">{{ this.$store.state.currentUser.description }}</label>
           </div>
           
         </v-expansion-panel-content>
