@@ -14,11 +14,11 @@
             <v-row no-gutters>
 
                 <v-col cols="12" md="12">
-                    <v-text-field outlined dense label="Email" placeholder="Enter Email"/>
+                    <v-text-field v-model="form.email" outlined dense label="Email" placeholder="Enter Email"/>
                 </v-col>
 
                 <v-col cols="12" md="12">
-                    <v-text-field type="password" outlined dense label="Password" placeholder="Enter Password"/>
+                    <v-text-field v-model="form.password" type="password" outlined dense label="Password" placeholder="Enter Password"/>
                     <v-checkbox
                         class="mt-2 mb-4"
                         label="Remember Me"
@@ -31,7 +31,7 @@
                     
 
                 <v-col cols="12" md="12">
-                    <v-btn style="width: 100%" color="green" class="white--text">Log In</v-btn>
+                    <v-btn @click="handleLogin" style="width: 100%" color="green" class="white--text">Log In</v-btn>
                 </v-col>
 
                 <label class="mx-auto mt-5">Don't have an account ? <router-link to="/register">Register </router-link> </label>
@@ -45,3 +45,47 @@
   </div>
 
 </template>
+
+<script>
+
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+export default {
+    
+    data(){
+        return {
+            form : {
+                email : '',
+                password : ''
+            }
+        }
+    },
+
+    methods : {
+
+        handleLogin(){
+
+            const auth = getAuth();
+
+            signInWithEmailAndPassword(auth, this.form.email, this.form.password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                this.$store.commit('setIsLoggedIn' , true);
+                this.$store.commit('setCurrentUser' , user);
+                this.$router.push('/');
+            })
+            .catch((error) => {
+                // const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
+
+
+        }
+
+
+    }
+
+
+}
+</script>

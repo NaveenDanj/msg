@@ -1,7 +1,7 @@
 <template>
   <v-app>
 
-    <v-navigation-drawer v-if="true" app mini-variant permanent>
+    <v-navigation-drawer v-if=" this.$store.state.isLoggedIn " app mini-variant permanent>
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>

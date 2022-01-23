@@ -34,7 +34,7 @@
                     <v-btn style="width: 100%" color="green" class="white--text">Register</v-btn>
                 </v-col>
 
-                <label class="mx-auto mt-5">Already have an account ? <router-link to="/">Login</router-link> </label>
+                <label class="mx-auto mt-5">Already have an account ? <router-link to="/login">Login</router-link> </label>
 
             </v-row>
 
