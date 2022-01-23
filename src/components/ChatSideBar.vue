@@ -2,17 +2,7 @@
   <v-container style="height: 100vh; overflow-y: scroll">
     <div class="d-flex justify-space-between">
       <h2>Chat</h2>
-      <v-btn
-        width="25"
-        height="25"
-        class="my-auto"
-        fab
-        dark
-        small
-        color="green"
-      >
-        <v-icon small dark> mdi-plus </v-icon>
-      </v-btn>
+      <AddContact />
     </div>
 
     <div class="mt-5">
@@ -114,3 +104,16 @@
     </div>
   </v-container>
 </template>
+
+<script>
+
+import AddContact from '../components/Models/AddContact.vue';
+
+export default {
+  
+  components : {
+    AddContact
+  }
+
+}
+</script>
