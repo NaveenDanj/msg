@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <v-navigation-drawer app mini-variant permanent>
+
+    <v-navigation-drawer v-if="false" app mini-variant permanent>
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
@@ -42,6 +43,7 @@
     <v-main>
       <router-view />
     </v-main>
+
   </v-app>
 </template>
 
