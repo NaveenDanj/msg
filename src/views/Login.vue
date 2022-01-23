@@ -9,7 +9,22 @@
             <label>Sign in to continue to Msg.</label>
         </div>
 
-        <v-form class="mt-3 pa-5">
+        <v-alert
+            class="ml-5 mr-5 mt-3 mb-0"
+            dense
+            outlined
+            type="error"
+            v-if="errorString != null"
+        >
+            
+            <div>
+                <label>{{ errorString }}</label>
+            </div>
+
+        </v-alert><br />
+
+
+        <v-form class="mt-0 pa-5">
 
             <v-row no-gutters>
 
@@ -57,7 +72,10 @@ export default {
             form : {
                 email : '',
                 password : ''
-            }
+            },
+
+            errorString : null,
+
         }
     },
 
@@ -77,6 +95,7 @@ export default {
             .catch((error) => {
                 // const errorCode = error.code;
                 const errorMessage = error.message;
+                this.errorString = errorMessage;
                 console.log(errorMessage);
             });
 
