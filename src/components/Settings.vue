@@ -169,9 +169,8 @@
           <div class="d-flex justify-space-between pa-2 my-auto" >
 
             <label class="font-weight-medium my-auto">Feature request & bug report </label>
-            <v-btn text fab x-small >
-              <v-icon>mdi-page-next </v-icon>
-            </v-btn>
+            
+            <Request />
 
           </div>
 
@@ -190,11 +189,13 @@
 <script>
 
 import EditAccount from '../components/Models/EditAccount.vue';
+import Request from '../components/Models/Request.vue';
 
 export default {
   
   components : {
-    EditAccount
+    EditAccount,
+    Request
   }
 
 }

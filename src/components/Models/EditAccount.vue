@@ -1,6 +1,6 @@
 <template>
   <v-dialog transition="dialog-top-transition" max-width="600">
-      
+
     <template v-slot:activator="{ on, attrs }">
 
         <v-btn v-bind="attrs" v-on="on" fab text x-small>
@@ -47,7 +47,7 @@
 
         <v-card-actions class="justify-end">
           <v-btn color="red" text @click="dialog.value = false">Close</v-btn>
-          <v-btn color="green" class="white--text pa-3" >Invite</v-btn>
+          <v-btn color="green" class="white--text pa-3" >Edit</v-btn>
         </v-card-actions>
 
       </v-card>
