@@ -1,7 +1,7 @@
 <template>
   <v-app>
 
-    <v-navigation-drawer v-if="false" app mini-variant permanent>
+    <v-navigation-drawer v-if="true" app mini-variant permanent>
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
@@ -16,25 +16,25 @@
 
       <v-list nav dense>
 
-        <v-list-item  link>
+        <v-list-item  link @click="navigateSideBar('Chat')">
           <v-list-item-icon>
             <v-icon color="green">mdi-android-messages </v-icon>
           </v-list-item-icon>
           <v-list-item-title>My Files</v-list-item-title>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link @click="navigateSideBar('Settings')">
           <v-list-item-icon>
             <v-icon>mdi-account-multiple</v-icon>
           </v-list-item-icon>
           <v-list-item-title>Shared with me</v-list-item-title>
         </v-list-item>
 
-        <v-list-item link>
+        <v-list-item link @click="navigateSideBar('Bookmark')">
           <v-list-item-icon>
             <v-icon>mdi-star</v-icon>
           </v-list-item-icon>
-          <v-list-item-title>Starred</v-list-item-title>
+          <v-list-item-title>Sta  rred</v-list-item-title>
         </v-list-item>
 
       </v-list>
@@ -54,5 +54,17 @@ export default {
   data: () => ({
     mini: false,
   }),
+
+  methods : {
+
+    navigateSideBar(route){
+
+      this.$store.commit('setActiveSideBar' , route);
+
+    }
+
+  }
+
+
 };
 </script>

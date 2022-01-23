@@ -3,9 +3,9 @@
   <v-row style="height : 100vh; overflow-y:hidden">
 
     <v-col cols="12" sm="4" lg="3" permanent>
-      <ChatSideBar v-if="false" />
-      <Settings v-if="true" />
-      <Bookmark v-if="false" />
+      <ChatSideBar v-if=" ActiveSideBar == 'Chat' ? true : false " />
+      <Settings v-if="ActiveSideBar == 'Settings' ? true : false " />
+      <Bookmark v-if="ActiveSideBar == 'Bookmark' ? true : false " />
     </v-col>
 
     <v-col cols="12" sm="8"  lg="9" >
@@ -196,6 +196,14 @@ export default {
     ChatSideBar,
     Settings,
     Bookmark
+  },
+
+  computed : {
+    ActiveSideBar(){
+
+      return this.$store.state.activeSideBar
+
+    }
   },
 
   data(){
