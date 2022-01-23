@@ -55,9 +55,7 @@
 
             <div>
 
-              <v-btn fab text x-small>
-                <v-icon>mdi-pencil</v-icon>
-              </v-btn>
+              <EditAccount />
             
             </div>
 
@@ -188,3 +186,16 @@
 
   </v-container>
 </template>
+
+<script>
+
+import EditAccount from '../components/Models/EditAccount.vue';
+
+export default {
+  
+  components : {
+    EditAccount
+  }
+
+}
+</script>
