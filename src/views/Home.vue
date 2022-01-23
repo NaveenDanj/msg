@@ -5,6 +5,7 @@
     <v-col cols="12" sm="4" lg="3" permanent>
       <ChatSideBar v-if="false" />
       <Settings v-if="true" />
+      <Bookmark v-if="false" />
     </v-col>
 
     <v-col cols="12" sm="8"  lg="9" >
@@ -186,13 +187,15 @@
 
 import ChatSideBar from '../components/ChatSideBar.vue';
 import Settings from '../components/Settings.vue'
+import Bookmark from '../components/Bookmark.vue'
 
 export default {
   name: "Home",
 
   components : {
     ChatSideBar,
-    Settings
+    Settings,
+    Bookmark
   },
 
   data(){
