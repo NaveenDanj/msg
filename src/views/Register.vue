@@ -137,6 +137,7 @@ export default {
                     await setDoc(doc(db, "users", user.uid), {
                         displayName: this.form.displayName,
                         userid: user.uid,
+                        email : this.form.email,
                         description: ""
                     });
 

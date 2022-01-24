@@ -30,6 +30,27 @@
           ><br />
 
           <v-form ref="form" class="mt-8">
+
+            <v-snackbar
+              v-model="snackBar"
+              :timeout="timeout"
+              :color=" updateRes == 'Account details updated successfully!' ? 'primary' : 'red' "
+            >
+              {{ updateRes }}
+
+              <template v-slot:action="{ attrs }">
+                <v-btn
+                  color="blue"
+                  text
+                  v-bind="attrs"
+                  @click="snackBar = false"
+                >
+                  Close
+                </v-btn>
+              </template>
+            </v-snackbar>
+
+
             <v-row no-gutters>
               <v-col cols="12" md="12">
                 <v-text-field
@@ -83,8 +104,10 @@
 
 <script>
 import { getAuth, updateProfile } from "firebase/auth";
+import { doc, updateDoc , getFirestore , getDoc } from "firebase/firestore";
 
 export default {
+
   data() {
     return {
       form: {
@@ -93,12 +116,38 @@ export default {
       },
 
       errorString: null,
+      updateRes : null,
+      snackBar : false,
+      timeout : 2000
     };
+  },
+
+  async created(){
+
+    const db = getFirestore();
+
+    this.form.name = this.$store.state.currentUser.displayName;
+
+    try{
+
+      const docRef = doc(db, "users", this.$store.state.currentUser.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        this.form.description = docSnap.data().description
+      }
+
+    }catch(err){
+      console.log(err);
+    }
+    
   },
 
   methods: {
 
     handleEditAccount() {
+
+      const db = getFirestore();
 
       if (!this.$refs.form.validate()) {
         return;
@@ -108,15 +157,23 @@ export default {
       updateProfile(auth.currentUser, {
         displayName: this.form.name,
       })
-      .then(() => {
+      .then( async () => {
 
         //update user description
-        
 
+        const washingtonRef = doc(db, "users", this.$store.state.currentUser.uid);
+
+        await updateDoc(washingtonRef, {
+          description: this.form.description
+        });
+
+        this.snackBar = true;
+        this.updateRes = 'Account details updated successfully!';
 
       })
       .catch((error) => {
         this.errorString = error.message;
+        this.updateRes = 'Account updating failed!';
       });
 
     },
