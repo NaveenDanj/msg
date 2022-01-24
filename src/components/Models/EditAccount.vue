@@ -167,6 +167,11 @@ export default {
           description: this.form.description
         });
 
+        const newAuth = getAuth();
+        const user = newAuth.currentUser;
+
+        this.$store.commit('setCurrentUser' , user);
+
         this.snackBar = true;
         this.updateRes = 'Account details updated successfully!';
 

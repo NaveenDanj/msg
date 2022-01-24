@@ -152,7 +152,15 @@
           <div class="d-flex justify-space-between pa-2 my-auto" >
 
             <label class="font-weight-medium my-auto">Logout</label>
-            <v-btn @click="handleLogout" outlined color="red" class="white--text">Logout</v-btn>
+            <v-btn dense @click="handleLogout" outlined color="red" class="white--text">Logout</v-btn>
+
+          </div>
+
+
+          <div class="d-flex justify-space-between pa-2 my-auto" >
+
+            <label class="font-weight-medium my-auto">Reset Password</label>
+            <v-btn dense outlined color="red" class="white--text">Reset</v-btn>
 
           </div>
 
