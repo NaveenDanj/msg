@@ -93,7 +93,7 @@
 <script>
 
 import { getAuth, createUserWithEmailAndPassword , updateProfile  } from "firebase/auth";
-
+import { doc, setDoc , getFirestore} from "firebase/firestore"; 
 
 export default {
     
@@ -116,6 +116,8 @@ export default {
 
         handleRegister(){
 
+            const db = getFirestore();
+
             this.errorString = null;
 
             if(!this.$refs.registerForm.validate()){
@@ -130,10 +132,20 @@ export default {
 
                 updateProfile(auth.currentUser, {
                     displayName: this.form.displayName
-                }).then(() => {
+                }).then(async () => {
+
+                    await setDoc(doc(db, "users", user.uid), {
+                        displayName: this.form.displayName,
+                        userid: user.uid,
+                        description: ""
+                    });
+
+
+
                     this.$store.commit('setIsLoggedIn' , true);
                     this.$store.commit('setCurrentUser' , user);
                     this.$router.push('/');
+
                 }).catch((error) => {
                     const errorMessage = error.message;
                     this.errorString = errorMessage;
