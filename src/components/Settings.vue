@@ -22,7 +22,7 @@
 
         <div class="mx-auto">
 
-          <label>Naveen Dhananjaya</label>
+          <label>{{ this.$store.state.currentUser.displayName }}</label>
 
          
 
@@ -69,7 +69,7 @@
 
           <div class="mt-7">
             <label class="font-weight-medium">Description</label><br/>
-            <label style="font-size: 14px;">{{ this.$store.state.currentUser.description }}</label>
+            <label style="font-size: 14px;">{{ this.$store.state.currentUserData.description }}</label>
           </div>
           
         </v-expansion-panel-content>

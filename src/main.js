@@ -6,14 +6,32 @@ import vuetify from "./plugins/vuetify";
 import app from './FirebaseConfig';
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { doc, getFirestore , getDoc } from "firebase/firestore";
 
 
 const auth = getAuth();
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
   if (user) {
+
+    const db = getFirestore();
+
+    try{
+
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        store.commit('setCurrentUserData' , docSnap.data());
+      }
+
+      store.commit('setIsLoggedIn' , true);
+      store.commit('setCurrentUser' , user);
+
+    }catch(err){
+      console.log(err);
+    }
     
-    store.commit('setIsLoggedIn' , true);
-    store.commit('setCurrentUser' , user);
+    
 
   } else {
     router.push('/login');

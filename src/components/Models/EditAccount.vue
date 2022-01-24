@@ -122,28 +122,30 @@ export default {
     };
   },
 
-  async created(){
-
-    const db = getFirestore();
-
+  created(){
     this.form.name = this.$store.state.currentUser.displayName;
-
-    try{
-
-      const docRef = doc(db, "users", this.$store.state.currentUser.uid);
-      const docSnap = await getDoc(docRef);
-
-      if (docSnap.exists()) {
-        this.form.description = docSnap.data().description
-      }
-
-    }catch(err){
-      console.log(err);
-    }
-    
+    this.fetchUserAdditionalData();
   },
 
   methods: {
+
+    async fetchUserAdditionalData(){
+
+      try{
+        const db = getFirestore();
+        const docRef = doc(db, "users", this.$store.state.currentUser.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          this.form.description = docSnap.data().description;
+          this.$store.commit('setCurrentUserData' , docSnap.data());
+        }
+
+      }catch(err){
+        console.log(err);
+      }
+
+    },
 
     handleEditAccount() {
 
@@ -161,14 +163,16 @@ export default {
 
         //update user description
 
-        const washingtonRef = doc(db, "users", this.$store.state.currentUser.uid);
+        const userRef = doc(db, "users", this.$store.state.currentUser.uid);
 
-        await updateDoc(washingtonRef, {
+        await updateDoc(userRef, {
           description: this.form.description
         });
 
         const newAuth = getAuth();
         const user = newAuth.currentUser;
+
+        this.fetchUserAdditionalData();
 
         this.$store.commit('setCurrentUser' , user);
 

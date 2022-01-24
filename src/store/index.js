@@ -7,7 +7,8 @@ export default new Vuex.Store({
   state: {
     activeSideBar : 'Chat',
     isLoggedIn : false,
-    currentUser : null
+    currentUser : null,
+    currentUserData : null
   },
 
   mutations: {
@@ -22,6 +23,10 @@ export default new Vuex.Store({
 
     setIsLoggedIn : (state , payload) => {
       state.isLoggedIn = payload;
+    },
+
+    setCurrentUserData : (state , payload) => {
+      state.currentUserData = payload;
     }
 
   },
