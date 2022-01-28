@@ -65,7 +65,7 @@
         </v-expansion-panel-header>
 
 
-        <v-expansion-panel-content class="pa-3">
+        <v-expansion-panel-content v-if="this.$store.state.currentUserData" class="pa-3">
 
           <div class="d-flex justify-space-between" >
 
@@ -90,7 +90,7 @@
 
           <div class="mt-7">
             <label class="font-weight-medium">Description</label><br/>
-            <label style="font-size: 14px;">{{ this.$store.state.currentUserData.description ? this.$store.state.currentUserData.description : '' }}</label>
+            <label style="font-size: 14px;">{{this.$store.state.currentUserData.description }}</label>
           </div>
           
         </v-expansion-panel-content>
