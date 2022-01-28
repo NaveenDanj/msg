@@ -4,6 +4,25 @@
 
         <h2>Settings</h2>
 
+        <v-snackbar
+          v-model="snackBar"
+          :timeout="timeout"
+          color="primary"
+        >
+          {{ updateRes }}
+
+          <template v-slot:action="{ attrs }">
+            <v-btn
+              color="blue"
+              text
+              v-bind="attrs"
+              @click="snackBar = false"
+            >
+              Close
+            </v-btn>
+          </template>
+        </v-snackbar>
+
       <center>
 
         <div class="mx-auto">
@@ -13,11 +32,13 @@
             style="width: 64px; height: 64px; border-radius: 32px"
             src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4"
           />
-
-          <v-btn class="my-auto" fab text x-small>
-            <v-icon>mdi-pencil</v-icon>
-          </v-btn>
-
+          <label>
+            <!-- <v-btn @click="open = true" class="my-auto" fab text x-small>
+              <v-icon>mdi-pencil</v-icon>
+            </v-btn> -->
+            <v-icon small>mdi-pencil</v-icon>
+            <input type="file" @change="handleUploadDisplayImage" accept="image/png" style="display: none">
+          </label>
         </div>
 
         <div class="mx-auto">
@@ -206,7 +227,8 @@
 import EditAccount from '../components/Models/EditAccount.vue';
 import ResetPassword from '../components/Models/ResetPassword.vue'
 import Request from '../components/Models/Request.vue';
-import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut , updateProfile  } from "firebase/auth";
+import { getStorage, ref , uploadBytes , getDownloadURL  } from "firebase/storage";
 
 export default {
   
@@ -214,6 +236,16 @@ export default {
     EditAccount,
     Request,
     ResetPassword
+  },
+
+  data(){
+
+    return {
+      snackBar : false,
+      timeout : 2000,
+      updateRes : null
+    }
+
   },
 
   methods : {
@@ -227,12 +259,51 @@ export default {
         this.$store.commit('setIsLoggedIn' , false);
         this.$store.commit('setCurrentUser' , null);
       }).catch((error) => {
-        
         console.log('msg : ' , error.message)
-        
       });
 
+    },
+
+    handleUploadDisplayImage(e){
+      
+      let  files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      console.log(files);
+
+      let filename = Date.now().toString() + "-"+ files[0].name;
+
+      const storage = getStorage();
+      const storageRef = ref(storage, `propic/${filename}`);
+
+      uploadBytes(storageRef, files[0]).then((snapshot) => {
+        
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+
+          const auth = getAuth();
+          updateProfile(auth.currentUser, {
+            photoURL: downloadURL
+          }).then(() => {
+            
+            const newAuth = getAuth();
+            const user = newAuth.currentUser;
+            this.$store.commit('setCurrentUser' , user);
+
+            console.log('the updated user is ' , user);
+
+            this.snackBar = true;
+            this.updateRes = "Profile picture uploaded successfully";
+          }).catch((error) => {
+            console.log(error);
+          });
+
+        });
+
+      });
+
+      
     }
+
 
   }
 

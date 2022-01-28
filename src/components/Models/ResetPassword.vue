@@ -134,9 +134,6 @@ export default {
         .then(() => {
           this.snackBar = true;
           this.updateRes = "";
-          
-
-          const auth = getAuth();
 
           signOut(auth).then(() => {
             this.$router.push('/login');
@@ -145,9 +142,6 @@ export default {
           }).catch((error) => {
             console.log('msg : ' , error.message)
           });
-
-
-
 
         })
         .catch((error) => {

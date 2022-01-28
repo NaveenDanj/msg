@@ -131,7 +131,8 @@ export default {
                 const user = userCredential.user;
 
                 updateProfile(auth.currentUser, {
-                    displayName: this.form.displayName
+                    displayName: this.form.displayName,
+                    photoURL : 'https://firebasestorage.googleapis.com/v0/b/msg-app-92d50.appspot.com/o/propic%2Fdefault.png?alt=media&token=ab999ea9-fe6d-4301-bb40-464c78e700eb'
                 }).then(async () => {
 
                     await setDoc(doc(db, "users", user.uid), {

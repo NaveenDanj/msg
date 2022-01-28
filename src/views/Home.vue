@@ -112,7 +112,7 @@
             </div>
 
             <div class="d-flex mt-2">
-              <img style="width : 32px; height: 32px; border-radius: 16px;" src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4" />
+              <img style="width : 32px; height: 32px; border-radius: 16px;" src="../assets/default.png" />
               <label style="font-size:12px;" class="font-weight-medium my-auto ml-3">Naveen Dhananjaya</label><label style="color: gray; font-size:12px;" class="my-auto ml-2" >06:37pm</label>
             </div>
           </div>
