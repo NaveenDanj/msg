@@ -17,7 +17,7 @@
           <v-card-text class="d-flex ">
 
             <div class="d-flex" >
-              <img src="https://avatars.githubusercontent.com/u/48654030?v=4" style="width : 40px; height: 40px; border-radius : 20px;" />
+              <img :src="this.$store.state.currentUser.photoURL" style="width : 40px; height: 40px; border-radius : 20px;" />
               <div>
                 <label class="my-auto ml-2 font-weight-medium">Naveen Dhananjaya</label><br/>
                 <label class="ml-2">Active</label>
@@ -112,7 +112,7 @@
             </div>
 
             <div class="d-flex mt-2">
-              <img style="width : 32px; height: 32px; border-radius: 16px;" src="../assets/default.png" />
+              <img style="width : 32px; height: 32px; border-radius: 16px;" :src="this.$store.state.currentUser.photoURL" />
               <label style="font-size:12px;" class="font-weight-medium my-auto ml-3">Naveen Dhananjaya</label><label style="color: gray; font-size:12px;" class="my-auto ml-2" >06:37pm</label>
             </div>
           </div>
@@ -200,10 +200,13 @@ export default {
 
   computed : {
     ActiveSideBar(){
-
       return this.$store.state.activeSideBar
+    },
 
+    userProPic(){
+      return this.$store.state.currentUser.photoURL
     }
+
   },
 
   data(){

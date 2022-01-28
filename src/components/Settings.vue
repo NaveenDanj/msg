@@ -30,7 +30,7 @@
           <img
             class="my-auto"
             style="width: 64px; height: 64px; border-radius: 32px"
-            src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4"
+            :src="this.$store.state.currentUser.photoURL"
           />
           <label>
             <!-- <v-btn @click="open = true" class="my-auto" fab text x-small>
@@ -90,7 +90,7 @@
 
           <div class="mt-7">
             <label class="font-weight-medium">Description</label><br/>
-            <label style="font-size: 14px;">{{ this.$store.state.currentUserData.description }}</label>
+            <label style="font-size: 14px;">{{ this.$store.state.currentUserData.description ? this.$store.state.currentUserData.description : '' }}</label>
           </div>
           
         </v-expansion-panel-content>
