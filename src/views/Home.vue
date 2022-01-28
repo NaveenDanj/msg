@@ -1,6 +1,6 @@
 <template>
   
-  <v-row style="height : 100vh; overflow-y:hidden">
+  <v-row v-if="this.$store.state.currentUser" style="height : 100vh; overflow-y:hidden">
 
     <v-col cols="12" sm="4" lg="3" permanent>
       <ChatSideBar v-if=" ActiveSideBar == 'Chat' ? true : false " />
@@ -112,7 +112,7 @@
             </div>
 
             <div class="d-flex mt-2">
-              <img style="width : 32px; height: 32px; border-radius: 16px;" :src="this.$store.state.currentUser.photoURL" />
+              <img style="width : 32px; height: 32px; border-radius: 16px;" :src="this.$store.state.currentUser.photoURL " />
               <label style="font-size:12px;" class="font-weight-medium my-auto ml-3">Naveen Dhananjaya</label><label style="color: gray; font-size:12px;" class="my-auto ml-2" >06:37pm</label>
             </div>
           </div>
@@ -202,10 +202,6 @@ export default {
     ActiveSideBar(){
       return this.$store.state.activeSideBar
     },
-
-    userProPic(){
-      return this.$store.state.currentUser.photoURL
-    }
 
   },
 

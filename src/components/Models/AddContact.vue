@@ -22,7 +22,7 @@
 
         <v-toolbar color="green" dense dark>
             
-            <label>Create Contact</label>
+            <label>Add Contact</label>
             <v-spacer></v-spacer>
             <v-btn fab x-small @click="dialog.value = false" text><v-icon>mdi-close</v-icon></v-btn>
 
