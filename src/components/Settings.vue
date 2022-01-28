@@ -160,7 +160,7 @@
           <div class="d-flex justify-space-between pa-2 my-auto" >
 
             <label class="font-weight-medium my-auto">Reset Password</label>
-            <v-btn dense outlined color="red" class="white--text">Reset</v-btn>
+            <ResetPassword />
 
           </div>
 
@@ -204,6 +204,7 @@
 <script>
 
 import EditAccount from '../components/Models/EditAccount.vue';
+import ResetPassword from '../components/Models/ResetPassword.vue'
 import Request from '../components/Models/Request.vue';
 import { getAuth, signOut } from "firebase/auth";
 
@@ -211,7 +212,8 @@ export default {
   
   components : {
     EditAccount,
-    Request
+    Request,
+    ResetPassword
   },
 
   methods : {
