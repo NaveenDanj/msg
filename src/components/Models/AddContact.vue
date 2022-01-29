@@ -109,7 +109,8 @@
 import { 
   getFirestore,
   doc,
-  getDoc, 
+  getDoc,
+  setDoc
 } from "firebase/firestore";
 
 export default {
@@ -154,10 +155,16 @@ export default {
           this.errorString = "User not found for the given details!";
         }else{
 
+          const ref = doc(db, "contact", this.$store.state.currentUser.uid , "contacts" , this.form.userId);
 
+          await setDoc(ref , {
+            userId : this.form.userId,
+            addedDate : new Date()
+          });
 
           this.snackBar = true;
           this.updateRes = "Contact is successfully added!";
+
         }
 
 

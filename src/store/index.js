@@ -5,10 +5,16 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+
     activeSideBar : 'Chat',
     isLoggedIn : false,
     currentUser : null,
-    currentUserData : null
+    currentUserData : null,
+
+    activeContact : null,
+    activeMessages : [],
+
+
   },
 
   mutations: {
@@ -27,6 +33,14 @@ export default new Vuex.Store({
 
     setCurrentUserData : (state , payload) => {
       state.currentUserData = payload;
+    },
+
+    setActiveContact : (state, payload) => {
+      state.activeContact = payload;
+    },
+
+    setActiveMessages : (state, payload) => {
+      state.activeMessages.push(payload);
     }
 
   },
