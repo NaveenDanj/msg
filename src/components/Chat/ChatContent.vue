@@ -101,9 +101,91 @@
         />
       </div>
     </div>
+
+    <div class="mb-5">
+      <div class="d-flex justify-end">
+        <v-btn fab x-small class="my-auto" text>
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
+
+        <div class="white pa-2 elevation-3" style="width: 50%">
+          <label
+            >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
+            est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit
+            qui qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
+            adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
+            laboris. Elit minim proident mollit fugiat reprehenderit commodo
+            magna anim nulla nisi.</label
+          >
+        </div>
+      </div>
+
+      <div class="d-flex mt-2 justify-end">
+        <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
+          >You</label
+        ><label style="color: gray; font-size: 12px" class="my-auto ml-2 mr-2"
+          >06:37pm</label
+        >
+        <img
+          style="width: 32px; height: 32px; border-radius: 16px"
+          src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4"
+        />
+      </div>
+    </div>
+
+    <div class="mb-5">
+      <div class="d-flex justify-end">
+        <v-btn fab x-small class="my-auto" text>
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
+
+        <div class="white pa-2 elevation-3" style="width: 50%">
+          <label
+            >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
+            est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit
+            qui qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
+            adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
+            laboris. Elit minim proident mollit fugiat reprehenderit commodo
+            magna anim nulla nisi.</label
+          >
+        </div>
+      </div>
+
+      <div class="d-flex mt-2 justify-end">
+        <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
+          >You</label
+        ><label style="color: gray; font-size: 12px" class="my-auto ml-2 mr-2"
+          >06:37pm</label
+        >
+        <img
+          style="width: 32px; height: 32px; border-radius: 16px"
+          src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4"
+        />
+      </div>
+    </div>
+
+    <div ref="chatContent"></div>
+
+
   </div>
 </template>
 
 <script>
-export default {};
+
+export default {
+
+    mounted(){
+        console.log('elem is ' , this.$refs.chatContent);
+        this.scrollToBottom();
+    },
+
+    methods : {
+
+        scrollToBottom(){
+            this.$refs.chatContent.scrollIntoView({behavior:"smooth"})
+        }
+
+    }
+
+};
 </script>

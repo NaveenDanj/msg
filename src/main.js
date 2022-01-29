@@ -4,6 +4,7 @@ import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
 import app from './FirebaseConfig';
+import VueChatScroll from 'vue-chat-scroll';
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { doc, getFirestore , getDoc } from "firebase/firestore";
@@ -41,6 +42,8 @@ onAuthStateChanged(auth, async (user) => {
 
 
 Vue.config.productionTip = false;
+
+Vue.use(VueChatScroll);
 
 console.log('firebase app is ' , app);
 
