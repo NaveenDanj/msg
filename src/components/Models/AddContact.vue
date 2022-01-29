@@ -132,7 +132,14 @@ export default {
 
     async handleAddContact(){
 
+      this.errorString = null;
+
       if(!this.$refs.contactForm.validate()){
+        return;
+      }
+
+      if(this.$store.state.currentUser.uid == this.form.userId){
+        this.errorString = "Cannot add your user ID as a new contact!";
         return;
       }
 
@@ -141,12 +148,14 @@ export default {
       try{
 
         const userRef = doc(db, "users" , this.form.userId);
-
         const userSnap = await getDoc(userRef);
 
         if(!userSnap.exists()){
           this.errorString = "User not found for the given details!";
         }else{
+
+
+
           this.snackBar = true;
           this.updateRes = "Contact is successfully added!";
         }

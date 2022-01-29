@@ -148,6 +148,13 @@ export default {
                         show_description : true
                     });
 
+                    await setDoc(doc(db, "contact", user.uid), {
+                        displayName: this.form.displayName,
+                        userid: user.uid,
+                        email : this.form.email,
+                        contacts : {}
+                    });
+
                     this.$store.commit('setIsLoggedIn' , true);
                     this.$store.commit('setCurrentUser' , user);
                     this.$router.push('/');
