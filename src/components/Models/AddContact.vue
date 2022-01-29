@@ -159,7 +159,8 @@ export default {
 
           await setDoc(ref , {
             userId : this.form.userId,
-            addedDate : new Date()
+            addedDate : new Date(),
+            favourite : false
           });
 
           this.snackBar = true;

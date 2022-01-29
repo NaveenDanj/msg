@@ -38,20 +38,20 @@
 
       <v-list nav dense class="mt-1">
         <v-list-item
-          v-for="(item, index) in [1, 2, 3, 4]"
+          v-for="(item, index) in direct_contacts"
           :key="index"
           link
           class="ma-0"
         >
           <v-list-item-icon>
             <img
-              src="https://avatars.githubusercontent.com/u/48654030?v=4"
+              :src=" item.photoURL "
               style="width: 30px; height: 30px; border-radius: 15px"
             />
           </v-list-item-icon>
 
           <v-list-item-title class="my-auto ml-0"
-            >Naveen Hettiwaththa</v-list-item-title
+            >{{ item.displayName }}</v-list-item-title
           >
         </v-list-item>
       </v-list>
@@ -88,6 +88,7 @@
           :key="index"
           link
           class="ma-0"
+          @click="setActiveContact(item)"
         >
           <v-list-item-icon>
             <!-- <img src="https://avatars.githubusercontent.com/u/48654030?v=4" style="width : 30px; height: 30px; border-radius : 15px;" /> -->
@@ -108,12 +109,69 @@
 <script>
 
 import AddContact from '../components/Models/AddContact.vue';
+import { collection , doc , getFirestore , getDocs , getDoc } from "firebase/firestore";
+
 
 export default {
   
+  data(){
+
+    return{
+
+      direct_contacts : [],
+      favourite_contacts : [],
+
+    }
+
+  },
+
+  async mounted(){
+
+    try{
+      const db = getFirestore();
+      const docRef = collection(db, "contact", this.$store.state.currentUser.uid , 'contacts');
+      const docSnapshot = await getDocs(docRef);
+
+      docSnapshot.forEach( async (docData) => {
+        
+        let user_id = docData.data().userId;
+
+        let userRef = doc(db, "users", user_id );
+        let userSnap = await getDoc(userRef);
+
+        if(userSnap.exists()){
+
+          if(docData.data().favourite){
+            this.favourite_contacts.push(userSnap.data());
+          }else{
+            this.direct_contacts.push(userSnap.data());
+          }
+
+        }
+
+
+      });
+
+    }catch(err){
+      console.log(err);
+    }
+
+
+  },
+
   components : {
     AddContact
+  },
+
+  methods : {
+
+    setActiveContact(user){
+      this.$store.commit('setActiveContact' , user);
+    }
+
   }
+
+
 
 }
 </script>
