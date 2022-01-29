@@ -1,6 +1,8 @@
 <template>
   <div
     class="ma-0 pb-3 pt-5 pl-2 pr-2"
+    v-chat-scroll
+    ref="chatContent"
     style="
       height: 80vh;
       overflow-y: scroll;
@@ -164,9 +166,6 @@
       </div>
     </div>
 
-    <div ref="chatContent"></div>
-
-
   </div>
 </template>
 
@@ -174,16 +173,21 @@
 
 export default {
 
+    props : ['contact'],
+
     mounted(){
-        console.log('elem is ' , this.$refs.chatContent);
-        this.scrollToBottom();
+        // this.scrollToBottom();
     },
 
     methods : {
 
         scrollToBottom(){
             this.$refs.chatContent.scrollIntoView({behavior:"smooth"})
-        }
+        },
+
+        forceUpdate() {
+            this.$forceUpdate();
+        },
 
     }
 

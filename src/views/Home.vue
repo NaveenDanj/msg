@@ -12,7 +12,7 @@
 
       <div style="overflow-y:hidden; width: 100%;">
         <ChatHeader />
-        <ChatContent />
+        <ChatContent contact="new contact" />
       </div>
 
       <div class=" pa-5 pb-0 d-flex" style=" width: 100%; height: 10vh">
@@ -22,7 +22,7 @@
           <v-icon class="black--text">mdi-microphone</v-icon>
         </v-btn>
 
-        <v-btn color="green">
+        <v-btn @click="contactData = 'another new' " color="green">
           <v-icon class="white--text">mdi-send</v-icon>
         </v-btn>
       </div>
@@ -46,6 +46,12 @@ import ChatContent from '../components/Chat/ChatContent.vue'
 
 export default {
   name: "Home",
+
+  data(){
+    return {
+      contactData : 'new'
+    }
+  },
 
   components : {
     ChatSideBar,

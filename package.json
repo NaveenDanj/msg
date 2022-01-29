@@ -12,6 +12,11 @@
     "postuninstall": "electron-builder install-app-deps"
   },
   "main": "background.js",
+
+  "build": {
+    "appId": "com.msg.desktop.app"
+  },
+
   "dependencies": {
     "core-js": "^3.6.5",
     "firebase": "^9.6.4",
