@@ -138,6 +138,7 @@ export default {
                     await setDoc(doc(db, "users", user.uid), {
                         displayName: this.form.displayName,
                         photoURL : 'https://firebasestorage.googleapis.com/v0/b/msg-app-92d50.appspot.com/o/propic%2Fdefault.png?alt=media&token=ab999ea9-fe6d-4301-bb40-464c78e700eb',
+                        photoFileName : 'default.png',
                         userid: user.uid,
                         email : this.form.email,
                         description: "",

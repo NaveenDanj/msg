@@ -228,7 +228,9 @@ import EditAccount from '../components/Models/EditAccount.vue';
 import ResetPassword from '../components/Models/ResetPassword.vue'
 import Request from '../components/Models/Request.vue';
 import { getAuth, signOut , updateProfile  } from "firebase/auth";
-import { getStorage, ref , uploadBytes , getDownloadURL  } from "firebase/storage";
+import { getStorage, ref , uploadBytes , getDownloadURL } from "firebase/storage";
+import { doc, updateDoc  , getFirestore} from "firebase/firestore"; 
+
 
 export default {
   
@@ -282,13 +284,22 @@ export default {
 
           const auth = getAuth();
           updateProfile(auth.currentUser, {
-            photoURL: downloadURL
-          }).then(() => {
-            
+            photoURL: downloadURL,
+          }).then(async () => {
+
+           
             const newAuth = getAuth();
             const user = newAuth.currentUser;
-            this.$store.commit('setCurrentUser' , user);
 
+            const db = getFirestore();
+            const userRef = doc(db, "users", user.uid);
+
+            await updateDoc(userRef , {
+              photoURL : downloadURL,
+              photoFileName : filename
+            });
+
+            this.$store.commit('setCurrentUser' , user);
             console.log('the updated user is ' , user);
 
             this.snackBar = true;
