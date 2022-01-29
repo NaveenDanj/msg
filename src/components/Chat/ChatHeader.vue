@@ -1,14 +1,14 @@
 <template>
-  <div style="background: rgba(0, 0, 0, 0.03)" class="ml-0 pa-1">
+  <div v-if="this.$store.state.activeContact" style="background: rgba(0, 0, 0, 0.03)" class="ml-0 pa-1">
     <v-card-text class="d-flex">
       <div class="d-flex">
         <img
-          :src="this.$store.state.currentUser.photoURL"
+          :src="this.$store.state.activeContact.photoURL"
           style="width: 40px; height: 40px; border-radius: 20px"
         />
         <div>
           <label class="my-auto ml-2 font-weight-medium"
-            >Naveen Dhananjaya</label
+            >{{ this.$store.state.activeContact.displayName }}</label
           ><br />
           <label class="ml-2">Active</label>
         </div>

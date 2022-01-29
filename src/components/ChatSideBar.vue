@@ -42,6 +42,7 @@
           :key="index"
           link
           class="ma-0"
+          @click="setActiveContact(item)"
         >
           <v-list-item-icon>
             <img
@@ -88,7 +89,6 @@
           :key="index"
           link
           class="ma-0"
-          @click="setActiveContact(item)"
         >
           <v-list-item-icon>
             <!-- <img src="https://avatars.githubusercontent.com/u/48654030?v=4" style="width : 30px; height: 30px; border-radius : 15px;" /> -->
