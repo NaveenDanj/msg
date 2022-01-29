@@ -10,24 +10,25 @@
     </div>
 
     <div class="mt-5">
-      <h5>FAVOURITESs</h5>
+      <h5>FAVOURITES</h5>
 
       <v-list nav dense class="mt-1">
         <v-list-item
-          v-for="(item, index) in [1, 2, 3, 4]"
+          v-for="(item, index) in favourite_contacts"
           :key="index"
           link
           class="ma-0"
+          @click="setActiveContact(item)"
         >
           <v-list-item-icon>
             <img
-              src="https://avatars.githubusercontent.com/u/48654030?v=4"
+              :src="item.photoURL"
               style="width: 30px; height: 30px; border-radius: 15px"
             />
           </v-list-item-icon>
 
           <v-list-item-title class="my-auto ml-0"
-            >Naveen Hettiwaththa</v-list-item-title
+            >{{ item.displayName }}</v-list-item-title
           >
         </v-list-item>
       </v-list>
