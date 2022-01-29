@@ -165,31 +165,25 @@
         />
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
-
 export default {
+  props: ["contact"],
 
-    props : ['contact'],
+  mounted() {
+    // this.scrollToBottom();
+  },
 
-    mounted(){
-        // this.scrollToBottom();
+  methods: {
+    scrollToBottom() {
+      this.$refs.chatContent.scrollIntoView({ behavior: "smooth" });
     },
 
-    methods : {
-
-        scrollToBottom(){
-            this.$refs.chatContent.scrollIntoView({behavior:"smooth"})
-        },
-
-        forceUpdate() {
-            this.$forceUpdate();
-        },
-
-    }
-
+    forceUpdate() {
+      this.$forceUpdate();
+    },
+  },
 };
 </script>
