@@ -84,6 +84,11 @@
           </div>
 
           <div class="mt-7">
+            <label class="font-weight-medium">User ID</label><br/>
+            <label style="font-size: 14px;">{{ this.$store.state.currentUser.uid }}</label>
+          </div>
+
+          <div class="mt-7">
             <label class="font-weight-medium">Email</label><br/>
             <label style="font-size: 14px;">{{ this.$store.state.currentUser.email }}</label>
           </div>
