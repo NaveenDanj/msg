@@ -1,9 +1,8 @@
 <template>
   <div class="d-flex justify-center">
     <div class="white pa-2 elevation-3" style="width: 70%">
-      <label
-        >{{item.content}}</label
-      >
+      
+      <center><label>{{item.content}}</label></center>
     </div>
   </div>
 </template>

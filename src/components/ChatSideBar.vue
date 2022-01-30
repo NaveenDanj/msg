@@ -167,6 +167,8 @@ export default {
   methods : {
 
     setActiveContact(user){
+      this.$store.commit('resetActiveContact');
+      this.$store.commit('resetActiveMessages');
       this.$store.commit('setActiveContact' , user);
     }
 

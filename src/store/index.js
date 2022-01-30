@@ -41,6 +41,14 @@ export default new Vuex.Store({
 
     setActiveMessages : (state, payload) => {
       state.activeMessages.push(payload);
+    },
+
+    resetActiveMessages : (state) => {
+      state.activeMessages = [];
+    },
+
+    resetActiveContact : (state) => {
+      state.activeContact = null;
     }
 
   },
