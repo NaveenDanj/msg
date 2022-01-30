@@ -80,7 +80,7 @@
             @click="handleReAuthenticate"
             color="green"
             class="white--text pa-3"
-            >Edit</v-btn
+            >Reset</v-btn
           >
         </v-card-actions>
       </v-card>

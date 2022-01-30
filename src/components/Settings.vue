@@ -223,6 +223,7 @@
 
     </v-expansion-panels>
 
+    <Loading :dialog="loading" />
 
   </v-container>
 </template>
@@ -232,6 +233,8 @@
 import EditAccount from '../components/Models/EditAccount.vue';
 import ResetPassword from '../components/Models/ResetPassword.vue'
 import Request from '../components/Models/Request.vue';
+import Loading from '../components/Models/Loading.vue'
+
 import { getAuth, signOut , updateProfile  } from "firebase/auth";
 import { getStorage, ref , uploadBytes , getDownloadURL } from "firebase/storage";
 import { doc, updateDoc  , getFirestore} from "firebase/firestore"; 
@@ -242,7 +245,8 @@ export default {
   components : {
     EditAccount,
     Request,
-    ResetPassword
+    ResetPassword,
+    Loading
   },
 
   data(){
@@ -250,7 +254,8 @@ export default {
     return {
       snackBar : false,
       timeout : 2000,
-      updateRes : null
+      updateRes : null,
+      loading : false
     }
 
   },
@@ -282,6 +287,8 @@ export default {
       const storage = getStorage();
       const storageRef = ref(storage, `propic/${filename}`);
 
+      this.loading = true;
+
       uploadBytes(storageRef, files[0]).then((snapshot) => {
         
         getDownloadURL(snapshot.ref).then((downloadURL) => {
@@ -307,10 +314,13 @@ export default {
             this.$store.commit('setCurrentUser' , user);
             console.log('the updated user is ' , user);
 
+            this.loading = false;
+
             this.snackBar = true;
             this.updateRes = "Profile picture uploaded successfully";
           }).catch((error) => {
             console.log(error);
+            this.loading = false;
           });
 
         });

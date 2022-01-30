@@ -94,6 +94,8 @@
             
         </v-card-text>
 
+        <Loading :dialog="loading" />
+
         <v-card-actions class="justify-end">
           <v-btn color="red" text @click="dialog.value = false">Close</v-btn>
           <v-btn @click="handleAddContact" color="green" class="white--text pa-3" >Add</v-btn>
@@ -115,7 +117,14 @@ import {
   collection
 } from "firebase/firestore";
 
+import Loading from '../Models/Loading.vue'
+
+
 export default {
+
+  components : {
+    Loading
+  },
   
   data(){
     return {
@@ -126,7 +135,8 @@ export default {
       errorString : null,
       snackBar : false,
       timeout : 2000,
-      updateRes : null
+      updateRes : null,
+      loading : false
 
     }
   },
@@ -150,11 +160,14 @@ export default {
 
       try{
 
+        this.loading = true;
+
         const userRef = doc(db, "users" , this.form.userId);
         const userSnap = await getDoc(userRef);
 
         if(!userSnap.exists()){
           this.errorString = "User not found for the given details!";
+          this.loading = false;
         }else{
 
           const ref = doc(db, "contact", this.$store.state.currentUser.uid , "contacts" , this.form.userId);
@@ -183,6 +196,8 @@ export default {
             content : 'Added contact on ' + new Date().toString(),
             files : []
           });
+
+          this.loading = false;
 
           this.snackBar = true;
           this.updateRes = "Contact is successfully added!";
