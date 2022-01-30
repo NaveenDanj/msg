@@ -181,7 +181,7 @@ export default {
             to : 'all',
             timeStamp : new Date(),
             content : 'Added contact on ' + new Date().toString(),
-            files : ['url1' , 'url2']
+            files : []
           });
 
           this.snackBar = true;

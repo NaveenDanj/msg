@@ -12,173 +12,47 @@
     "
   >
 
+
+
     <div class="mb-5">
-      <div class="d-flex justify-center">
-          <div class="white pa-2 elevation-3" style="width: 70%">
-          <label
-              >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
-              </label
-          >
-          </div>
+      <MsgChat />
+    </div>
 
-         
-      </div>
-
+    <div v-for="(item , index) in messageArray" :key="index" class="mb-5">
+      
+      <OtherMessage :item="item" />
+      
     </div>
 
     <div class="mb-5">
-      <div class="d-flex justify-start">
-          <div class="white pa-2 elevation-3" style="width: 50%">
-          <label
-              >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
-              est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit
-              qui qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
-              adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
-              laboris. Elit minim proident mollit fugiat reprehenderit commodo
-              magna anim nulla nisi.</label
-          >
-          </div>
-
-          <v-btn fab x-small class="my-auto" text>
+      <div class="d-flex justify-end">
+        <v-btn fab x-small class="my-auto" text>
           <v-icon>mdi-dots-vertical</v-icon>
-          </v-btn>
-      </div>
+        </v-btn>
 
-      <div class="d-flex mt-2">
-          <img
-          style="width: 32px; height: 32px; border-radius: 16px"
-          :src="this.$store.state.currentUser.photoURL"
-          />
-          <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
-          >Naveen Dhananjaya</label
-          ><label style="color: gray; font-size: 12px" class="my-auto ml-2"
-          >06:37pm</label
+        <div class="white pa-2 elevation-3" style="width: 50%">
+          <label
+            >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
+            est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit
+            qui qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
+            adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
+            laboris. Elit minim proident mollit fugiat reprehenderit commodo
+            magna anim nulla nisi.</label
           >
+        </div>
       </div>
-    </div>
 
-    <div class="mb-5">
-    <div class="d-flex justify-end">
-        <v-btn fab x-small class="my-auto" text>
-        <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-
-        <div class="white pa-2 elevation-3" style="width: 50%">
-        <label
-            >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
-            est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit
-            qui qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
-            adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
-            laboris. Elit minim proident mollit fugiat reprehenderit commodo
-            magna anim nulla nisi.</label
-        >
-        </div>
-    </div>
-
-    <div class="d-flex mt-2 justify-end">
+      <div class="d-flex mt-2 justify-end">
         <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
-        >You</label
+          >You</label
         ><label style="color: gray; font-size: 12px" class="my-auto ml-2 mr-2"
-        >06:37pm</label
+          >06:37pm</label
         >
         <img
-        style="width: 32px; height: 32px; border-radius: 16px"
-        src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4"
+          style="width: 32px; height: 32px; border-radius: 16px"
+          src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4"
         />
-    </div>
-    </div>
-
-    <div class="mb-5">
-    <div class="d-flex justify-end">
-        <v-btn fab x-small class="my-auto" text>
-        <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-
-        <div class="white pa-2 elevation-3" style="width: 50%">
-        <label
-            >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
-            est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit
-            qui qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
-            adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
-            laboris. Elit minim proident mollit fugiat reprehenderit commodo
-            magna anim nulla nisi.</label
-        >
-        </div>
-    </div>
-
-    <div class="d-flex mt-2 justify-end">
-        <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
-        >You</label
-        ><label style="color: gray; font-size: 12px" class="my-auto ml-2 mr-2"
-        >06:37pm</label
-        >
-        <img
-        style="width: 32px; height: 32px; border-radius: 16px"
-        src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4"
-        />
-    </div>
-    </div>
-
-    <div class="mb-5">
-    <div class="d-flex justify-end">
-        <v-btn fab x-small class="my-auto" text>
-        <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-
-        <div class="white pa-2 elevation-3" style="width: 50%">
-        <label
-            >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
-            est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit
-            qui qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
-            adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
-            laboris. Elit minim proident mollit fugiat reprehenderit commodo
-            magna anim nulla nisi.</label
-        >
-        </div>
-    </div>
-
-    <div class="d-flex mt-2 justify-end">
-        <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
-        >You</label
-        ><label style="color: gray; font-size: 12px" class="my-auto ml-2 mr-2"
-        >06:37pm</label
-        >
-        <img
-        style="width: 32px; height: 32px; border-radius: 16px"
-        src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4"
-        />
-    </div>
-    </div>
-
-    <div class="mb-5">
-    <div class="d-flex justify-end">
-        <v-btn fab x-small class="my-auto" text>
-        <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-
-        <div class="white pa-2 elevation-3" style="width: 50%">
-        <label
-            >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
-            est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit
-            qui qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
-            adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
-            laboris. Elit minim proident mollit fugiat reprehenderit commodo
-            magna anim nulla nisi.</label
-        >
-        </div>
-    </div>
-
-    <div class="d-flex mt-2 justify-end">
-        <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
-        >You</label
-        ><label style="color: gray; font-size: 12px" class="my-auto ml-2 mr-2"
-        >06:37pm</label
-        >
-        <img
-        style="width: 32px; height: 32px; border-radius: 16px"
-        src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4"
-        />
-    </div>
+      </div>
     </div>
 
 
@@ -186,25 +60,60 @@
 </template>
 
 <script>
+
+import { doc, getFirestore , getDoc , collection , onSnapshot  } from "firebase/firestore";
+import MsgChat from '../Chat/MsgChat.vue'
+import OtherMessage from './OtherMessage.vue'
+
 export default {
-  props: ["contact"],
 
-  watch : {
+  components : {
+    MsgChat,
+    OtherMessage
+  },
 
-    '$store.state.activeContact': function() {
-        this.scrollToBottom();
+  watch: {
+    "$store.state.activeContact": function () {
+      this.scrollToBottom();
+      this.fetchMessages();
+    },
+  },
+
+  computed : {
+
+    messageArray(){
+      return this.$store.state.activeMessages
     }
-
 
   },
 
   methods: {
-      
+    
+    async fetchMessages(){
+
+      let db = getFirestore();
+
+      let docData = await getDoc(doc(db, "contact" , this.$store.state.currentUser.uid , "contacts" , this.$store.state.activeContact.userid ));
+
+      if(docData.exists()){
+        console.log('message inbox is : ' , docData.data())
+      }
+
+      onSnapshot(collection(db, "messages", docData.data().messageId , 'inbox'), (messageSnap) => {
+        messageSnap.forEach((doc) => {
+          this.$store.commit('setActiveMessages' , doc.data());
+        })
+      });
+
+    },
+    
     scrollToBottom() {
       let container = this.$refs.chatContent;
-      container.scrollTop = container.scrollHeight; 
+      container.scrollTop = container.scrollHeight;
     },
-
   },
+
+
+
 };
 </script>

@@ -12,7 +12,7 @@
 
       <div style="overflow-y:hidden; width: 100%;">
         <ChatHeader />
-        <ChatContent contact="new contact" />
+        <ChatContent />
       </div>
 
       <div class=" pa-5 pb-0 d-flex" style=" width: 100%; height: 10vh">
