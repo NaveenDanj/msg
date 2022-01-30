@@ -11,7 +11,7 @@
     </div>
 
     <div class="d-flex mt-2">
-      <img style="width: 32px; height: 32px; border-radius: 16px" />
+      <img :src="this.$store.state.currentUser.photoURL" style="width: 32px; height: 32px; border-radius: 16px" />
       <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
         >Naveen Dhananjaya</label
       ><label style="color: gray; font-size: 12px" class="my-auto ml-2"

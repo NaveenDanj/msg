@@ -7,12 +7,7 @@
 
       <div class="white pa-2 elevation-3" style="width: 50%">
         <label
-          >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
-          est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit qui
-          qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
-          adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
-          laboris. Elit minim proident mollit fugiat reprehenderit commodo magna
-          anim nulla nisi.</label
+          >{{item.content}}</label
         >
       </div>
     </div>
@@ -25,8 +20,14 @@
       >
       <img
         style="width: 32px; height: 32px; border-radius: 16px"
-        src="https://avatars.githubusercontent.com/u/48654030?s=64&v=4"
+        :src="this.$store.state.currentUser.photoURL"
       />
     </div>
   </div>
 </template>
+
+<script>
+export default {
+    props : ['item']
+}
+</script>
