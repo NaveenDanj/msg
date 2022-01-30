@@ -22,6 +22,8 @@
 
     </div>
 
+    <Loading :dialog="loadingDialog" />
+
    
   </div>
 
@@ -34,12 +36,23 @@ import MsgChat from '../Chat/MsgChat.vue'
 import OtherMessage from './OtherMessage.vue'
 import MyMessage from './MyMessage.vue'
 
+import Loading from '../Models/Loading.vue'
+
 export default {
 
   components : {
     MsgChat,
     OtherMessage,
     MyMessage,
+    Loading
+  },
+
+  data(){
+
+    return {
+      loadingDialog : false,
+    }
+
   },
 
   watch: {
@@ -67,6 +80,8 @@ export default {
 
       let db = getFirestore();
 
+      this.loadingDialog = true;
+
       let docData = await getDoc(doc(db, "contact" , this.$store.state.currentUser.uid , "contacts" , this.$store.state.activeContact.userid ));
       this.$store.commit('setActiveInboxId' , docData.data().messageId);
 
@@ -77,6 +92,8 @@ export default {
           this.$store.commit('setActiveMessages' , doc.data());
         })
       });
+
+      this.loadingDialog = false;
 
     },
     
