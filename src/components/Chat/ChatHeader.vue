@@ -56,20 +56,20 @@
 <script>
 export default {
     
-    data(){
+  data(){
 
-        return {
+    return {
 
-        items: [
-            { title: 'Click Me' },
-            { title: 'Click Me' },
-            { title: 'Click Me' },
-            { title: 'Click Me 2' },
-        ],
-
-        }
+      items: [
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me' },
+        { title: 'Click Me 2' },
+      ],
 
     }
+
+  }
 
 }
 </script>

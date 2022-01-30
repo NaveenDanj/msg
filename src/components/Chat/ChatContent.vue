@@ -74,6 +74,8 @@ export default {
         console.log('message inbox is : ' , docData.data())
       }
 
+      this.$store.commit('setActiveInboxId' , docData.data().messageId);
+
       onSnapshot(collection(db, "messages", docData.data().messageId , 'inbox'), (messageSnap) => {
         messageSnap.forEach((doc) => {
           this.$store.commit('setActiveMessages' , doc.data());
@@ -82,6 +84,7 @@ export default {
 
     },
     
+
     scrollToBottom() {
       let container = this.$refs.chatContent;
       container.scrollTop = container.scrollHeight;

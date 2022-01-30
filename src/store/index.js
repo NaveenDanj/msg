@@ -13,7 +13,7 @@ export default new Vuex.Store({
 
     activeContact : null,
     activeMessages : [],
-
+    activeInboxId : null
 
   },
 
@@ -43,12 +43,20 @@ export default new Vuex.Store({
       state.activeMessages.push(payload);
     },
 
+    setActiveInboxId : (state , payload) => {
+      state.activeInboxId = payload;
+    },
+
     resetActiveMessages : (state) => {
       state.activeMessages = [];
     },
 
     resetActiveContact : (state) => {
       state.activeContact = null;
+    },
+
+    resetActiveInboxId : (state) => {
+      state.activeInboxId = null;
     }
 
   },
