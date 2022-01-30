@@ -22,9 +22,7 @@
             <v-icon dark> mdi-magnify </v-icon>
           </v-btn>
 
-          <v-btn elevation="0" width="25" height="25" class="mr-4" fab>
-            <v-icon dark> mdi-information-outline </v-icon>
-          </v-btn>
+          <ContactInfo />
 
           <v-menu rounded="lg" offset-y>
             <template v-slot:activator="{ on, attrs }">
@@ -54,7 +52,14 @@
 </template>
 
 <script>
+
+import ContactInfo from './ContactInfo.vue'
+
 export default {
+
+  components : {
+    ContactInfo
+  },
     
   data(){
 
