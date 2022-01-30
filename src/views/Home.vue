@@ -15,17 +15,7 @@
         <ChatContent />
       </div>
 
-      <div class=" pa-5 pb-0 d-flex" style=" width: 100%; height: 10vh">
-        <v-text-field class="mr-3" outlined dense placeholder="Type your message..." />
-
-        <v-btn class="mr-3 " text >
-          <v-icon class="black--text">mdi-microphone</v-icon>
-        </v-btn>
-
-        <v-btn @click="contactData = 'another new' " color="green">
-          <v-icon class="white--text">mdi-send</v-icon>
-        </v-btn>
-      </div>
+      <EnterChat />
 
     </v-col>
 
@@ -42,7 +32,7 @@ import Bookmark from '../components/Bookmark.vue'
 
 import ChatHeader from '../components/Chat/ChatHeader.vue'
 import ChatContent from '../components/Chat/ChatContent.vue'
-
+import EnterChat from '../components/Chat/EnterChat.vue'
 
 export default {
   name: "Home",
@@ -59,7 +49,8 @@ export default {
     Bookmark,
 
     ChatHeader,
-    ChatContent
+    ChatContent,
+    EnterChat
   },
 
   computed : {

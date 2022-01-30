@@ -12,19 +12,14 @@
     "
   >
 
-
-
-      
-
     <div v-for="(item , index) in messageArray" :key="index" class="mb-5">
 
       <MsgChat :item="item" v-if="item.from == 'msg' " />
       
-      <OtherMessage v-else-if="item.from != this.$store.state.currentUser.uid " :item="item" />
+      <OtherMessage v-else-if="item.from != currentUser " :item="item" />
 
       <MyMessage v-else :item="item" />
 
-      
     </div>
 
    
@@ -34,7 +29,7 @@
 
 <script>
 
-import { doc, getFirestore , getDoc , collection , onSnapshot  } from "firebase/firestore";
+import { doc, getFirestore , getDoc , collection , onSnapshot, orderBy, query  } from "firebase/firestore";
 import MsgChat from '../Chat/MsgChat.vue'
 import OtherMessage from './OtherMessage.vue'
 import MyMessage from './MyMessage.vue'
@@ -44,7 +39,7 @@ export default {
   components : {
     MsgChat,
     OtherMessage,
-    MyMessage
+    MyMessage,
   },
 
   watch: {
@@ -58,6 +53,10 @@ export default {
 
     messageArray(){
       return this.$store.state.activeMessages
+    },
+
+    currentUser(){
+      return this.$store.state.currentUser.uid;
     }
 
   },
@@ -69,14 +68,11 @@ export default {
       let db = getFirestore();
 
       let docData = await getDoc(doc(db, "contact" , this.$store.state.currentUser.uid , "contacts" , this.$store.state.activeContact.userid ));
-
-      if(docData.exists()){
-        console.log('message inbox is : ' , docData.data())
-      }
-
       this.$store.commit('setActiveInboxId' , docData.data().messageId);
 
-      onSnapshot(collection(db, "messages", docData.data().messageId , 'inbox'), (messageSnap) => {
+      const q = query( collection(db, "messages", docData.data().messageId , 'inbox') , orderBy('timeStamp') )
+      onSnapshot(q , (messageSnap) => {
+        this.$store.commit('resetActiveMessages');
         messageSnap.forEach((doc) => {
           this.$store.commit('setActiveMessages' , doc.data());
         })
@@ -89,6 +85,7 @@ export default {
       let container = this.$refs.chatContent;
       container.scrollTop = container.scrollHeight;
     },
+
   },
 
 
