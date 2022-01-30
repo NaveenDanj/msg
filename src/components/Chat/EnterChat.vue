@@ -2,6 +2,7 @@
   <div class="pa-5 pb-0 d-flex" style="width: 100%; height: 10vh">
     <v-text-field
       v-model="message"
+      @keydown.enter="senMessage"
       class="mr-3"
       outlined
       dense
@@ -46,6 +47,8 @@ export default {
         content: this.message,
         files: [],
       });
+
+      this.message = "";
     },
   },
 };

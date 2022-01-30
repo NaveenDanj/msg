@@ -18,6 +18,7 @@ async function createWindow() {
     'min-height': 700,
     minWidth: 1200,
     minHeight : 900,
+    openDevTools : true,
     webPreferences: {
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
