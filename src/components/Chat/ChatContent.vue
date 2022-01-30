@@ -12,36 +12,49 @@
     "
   >
 
+    <div class="mb-5">
+      <div class="d-flex justify-center">
+          <div class="white pa-2 elevation-3" style="width: 70%">
+          <label
+              >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
+              </label
+          >
+          </div>
+
+         
+      </div>
+
+    </div>
 
     <div class="mb-5">
-    <div class="d-flex justify-start">
-        <div class="white pa-2 elevation-3" style="width: 50%">
-        <label
-            >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
-            est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit
-            qui qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
-            adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
-            laboris. Elit minim proident mollit fugiat reprehenderit commodo
-            magna anim nulla nisi.</label
-        >
-        </div>
+      <div class="d-flex justify-start">
+          <div class="white pa-2 elevation-3" style="width: 50%">
+          <label
+              >Sunt sint in id sint. In eu non aliquip non nisi ipsum ullamco esse
+              est sit duis aliqua irure. Voluptate occaecat Lorem eiusmod mollit
+              qui qui dolore magna do aliquip sint et sint deserunt. Ex voluptate
+              adipisicing qui nulla sunt dolor eiusmod do elit elit ex nulla
+              laboris. Elit minim proident mollit fugiat reprehenderit commodo
+              magna anim nulla nisi.</label
+          >
+          </div>
 
-        <v-btn fab x-small class="my-auto" text>
-        <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
-    </div>
+          <v-btn fab x-small class="my-auto" text>
+          <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+      </div>
 
-    <div class="d-flex mt-2">
-        <img
-        style="width: 32px; height: 32px; border-radius: 16px"
-        :src="this.$store.state.currentUser.photoURL"
-        />
-        <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
-        >Naveen Dhananjaya</label
-        ><label style="color: gray; font-size: 12px" class="my-auto ml-2"
-        >06:37pm</label
-        >
-    </div>
+      <div class="d-flex mt-2">
+          <img
+          style="width: 32px; height: 32px; border-radius: 16px"
+          :src="this.$store.state.currentUser.photoURL"
+          />
+          <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
+          >Naveen Dhananjaya</label
+          ><label style="color: gray; font-size: 12px" class="my-auto ml-2"
+          >06:37pm</label
+          >
+      </div>
     </div>
 
     <div class="mb-5">
@@ -180,21 +193,18 @@ export default {
 
     '$store.state.activeContact': function() {
         this.scrollToBottom();
-        console.log('data changed!');
     }
 
 
   },
 
   methods: {
+      
     scrollToBottom() {
       let container = this.$refs.chatContent;
       container.scrollTop = container.scrollHeight; 
     },
 
-    forceUpdate() {
-      this.$forceUpdate();
-    },
   },
 };
 </script>

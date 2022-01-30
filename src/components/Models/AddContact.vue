@@ -110,7 +110,9 @@ import {
   getFirestore,
   doc,
   getDoc,
-  setDoc
+  setDoc,
+  addDoc,
+  collection
 } from "firebase/firestore";
 
 export default {
@@ -156,11 +158,30 @@ export default {
         }else{
 
           const ref = doc(db, "contact", this.$store.state.currentUser.uid , "contacts" , this.form.userId);
+          let message_id = this.$store.state.currentUser.uid + " " + this.form.userId;
 
           await setDoc(ref , {
             userId : this.form.userId,
             addedDate : new Date(),
-            favourite : false
+            favourite : false,
+            messageId : message_id
+          });
+
+          const Otherref = doc(db, "contact",  this.form.userId , "contacts" ,  this.$store.state.currentUser.uid);
+
+          await setDoc(Otherref , {
+            userId : this.$store.state.currentUser.uid,
+            addedDate : new Date(),
+            favourite : false,
+            messageId : message_id
+          });
+
+          await addDoc(collection(db, "messages" , message_id , "inbox" ), {
+            from : 'msg',
+            to : 'all',
+            timeStamp : new Date(),
+            content : 'Added contact on ' + new Date().toString(),
+            files : ['url1' , 'url2']
           });
 
           this.snackBar = true;
