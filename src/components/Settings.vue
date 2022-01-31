@@ -107,7 +107,7 @@
 
         <v-expansion-panel-header>
             <div class="ml-0 my-auto">
-                <v-icon>mdi-account</v-icon>
+                <v-icon>mdi-shield-account</v-icon>
                 <label class="my-auto ml-5">Privacy</label>
             </div>
         </v-expansion-panel-header>
@@ -160,7 +160,7 @@
 
         <v-expansion-panel-header>
             <div class="ml-0 my-auto">
-                <v-icon>mdi-account</v-icon>
+                <v-icon>mdi-security</v-icon>
                 <label class="my-auto ml-5">Security</label>
             </div>
         </v-expansion-panel-header>
@@ -199,7 +199,7 @@
 
         <v-expansion-panel-header>
             <div class="ml-0 my-auto">
-                <v-icon>mdi-account</v-icon>
+                <v-icon>mdi-help-circle</v-icon>
                 <label class="my-auto ml-5">Help</label>
             </div>
         </v-expansion-panel-header>

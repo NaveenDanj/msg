@@ -72,6 +72,8 @@
                 <label class="mx-auto mt-5">Don't have an account ? <router-link to="/register">Register </router-link> </label>
             </v-row>
 
+            <Loading :dialog="loading" />
+
         </v-form>
 
     </v-card>
@@ -84,8 +86,14 @@
 <script>
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import Loading from '../components/Models/Loading.vue';
+
 
 export default {
+
+    components : {
+        Loading
+    },
     
     data(){
         return {
@@ -95,6 +103,7 @@ export default {
             },
 
             errorString : null,
+            loading : false
 
         }
     },
@@ -107,17 +116,21 @@ export default {
                 return;
             }
 
+            this.loading = true;
+
             const auth = getAuth();
 
             signInWithEmailAndPassword(auth, this.form.email, this.form.password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                this.loading = false;
                 this.$store.commit('setIsLoggedIn' , true);
                 this.$store.commit('setCurrentUser' , user);
                 this.$router.push('/');
             })
             .catch((error) => {
                 // const errorCode = error.code;
+                this.loading = false;
                 const errorMessage = error.message;
                 this.errorString = errorMessage;
             });

@@ -81,6 +81,8 @@
 
             </v-row>
 
+            <Loading :dialog="loading" />
+
         </v-form>
 
     </v-card>
@@ -94,8 +96,13 @@
 
 import { getAuth, createUserWithEmailAndPassword , updateProfile  } from "firebase/auth";
 import { doc, setDoc , getFirestore} from "firebase/firestore"; 
+import Loading from '../components/Models/Loading.vue';
 
 export default {
+
+    components : {
+        Loading
+    },
     
     data(){
 
@@ -106,7 +113,8 @@ export default {
                 password : '',
             },
 
-            errorString : null
+            errorString : null,
+            loading : false
 
         }
 
@@ -123,6 +131,8 @@ export default {
             if(!this.$refs.registerForm.validate()){
                 return;
             }
+
+            this.loading = true;
 
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, this.form.email, this.form.password)
@@ -154,17 +164,21 @@ export default {
                         email : this.form.email,
                     });
 
+                    this.loading = false;
+
                     this.$store.commit('setIsLoggedIn' , true);
                     this.$store.commit('setCurrentUser' , user);
                     this.$router.push('/');
 
                 }).catch((error) => {
+                    this.loading = false;
                     const errorMessage = error.message;
                     this.errorString = errorMessage;
                 });
                 
             })
             .catch((error) => {
+                this.loading = false;
                 const errorMessage = error.message;
                 this.errorString = errorMessage;
             });
