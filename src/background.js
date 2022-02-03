@@ -29,6 +29,12 @@ async function createWindow() {
 
   win.setMenuBarVisibility(false)
 
+  win.on('close', function() { //   <---- Catch close event
+
+    // The dialog box below will open, instead of your app closing.
+    consolel.log('Are you sure you want to close?');
+  });
+
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
     await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);

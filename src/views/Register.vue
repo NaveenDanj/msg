@@ -155,7 +155,8 @@ export default {
                         lastSeen : true,
                         read_receipt : true,
                         freeze_account : false,
-                        show_description : true
+                        show_description : true,
+                        active : true,
                     });
 
                     await setDoc(doc(db, "contact", user.uid), {

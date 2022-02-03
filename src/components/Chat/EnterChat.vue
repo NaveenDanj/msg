@@ -55,6 +55,7 @@ export default {
         timeStamp: new Date(),
         content: this.message,
         files: [],
+        read : false
       });
 
       this.message = "";
