@@ -36,7 +36,7 @@ onAuthStateChanged(auth, async (user) => {
       store.commit('setCurrentUser' , user);
 
     }catch(err){
-      console.log(err);
+      console.log("the error is : " , err);
     }
     
     

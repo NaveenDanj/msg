@@ -32,7 +32,7 @@
       "
     >
       <label class="font-weight-medium my-auto">Active Status</label>
-      <v-switch outlined dense />
+      <v-switch @change="setActiveState" v-model="activeStatus" outlined dense />
     </div>
 
     <div
@@ -44,10 +44,10 @@
       "
     >
       <label class="font-weight-medium my-auto">Read Receipt</label>
-      <v-switch outlined dense />
+      <v-switch @change="setReadReceipt" v-model="readReceipt" outlined dense />
     </div>
 
-    <div
+    <!-- <div
       class="d-flex justify-space-between pa-2"
       style="
         border-bottom-width: 1px;
@@ -67,7 +67,7 @@
           item-value="value"
         />
       </div>
-    </div>
+    </div> -->
   </v-expansion-panel-content>
 </template>
 
@@ -88,7 +88,10 @@ export default {
     data(){
         return {
             showDescription : true,
-            descriptionList : [{ name : 'Everyone' , value : true}, {name : 'Nobody' , value : false}]
+            descriptionList : [{ name : 'Everyone' , value : true}, {name : 'Nobody' , value : false}],
+
+            activeStatus : true,
+            readReceipt : false
         }
     },
     
@@ -101,6 +104,8 @@ export default {
             try{
                 const docSnap = await getDoc(docRef);
                 this.showDescription = docSnap.data().show_description;
+                this.activeStatus = docSnap.data().lastSeen;
+                this.readReceipt = docSnap.data().read_receipt;
             }catch(e){
                 console.log(e);
             }
@@ -126,6 +131,50 @@ export default {
             }
 
         },
+
+        async setActiveState(){
+
+            let db = getFirestore();
+            const userRef = doc(db, "users", this.$store.state.currentUser.uid);
+
+            try{
+                await updateDoc(userRef, {
+                    lastSeen: this.activeStatus
+                });
+
+                const docRef = doc(db, "users", this.$store.state.currentUser.uid);
+                const docSnap = await getDoc(docRef);
+
+                this.$store.commit('setCurrentUserData' , docSnap.data());
+
+
+            }catch(err){
+                console.log(err);
+            }
+
+        },
+
+        async setReadReceipt(){
+
+            let db = getFirestore();
+            const userRef = doc(db, "users", this.$store.state.currentUser.uid);
+
+            try{
+                await updateDoc(userRef, {
+                    read_receipt: this.readReceipt
+                });
+
+                const docRef = doc(db, "users", this.$store.state.currentUser.uid);
+                const docSnap = await getDoc(docRef);
+
+                this.$store.commit('setCurrentUserData' , docSnap.data());
+
+
+            }catch(err){
+                console.log(err);
+            }
+
+        }
 
     }
 
