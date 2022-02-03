@@ -4,7 +4,7 @@
         
         <template v-slot:activator="{ on, attrs }">
 
-            <v-btn elevation="0" width="25" height="25" class="mr-4" fab v-bind="attrs" v-on="on">
+            <v-btn :disabled="activeContact == null ? true : false" elevation="0" width="25" height="25" class="mr-4" fab v-bind="attrs" v-on="on">
                 <v-icon dark> mdi-information-outline </v-icon>
             </v-btn>
 
@@ -59,6 +59,10 @@ export default {
 
     
     computed : {
+
+        activeContact(){
+            return this.$store.state.activeContact;
+        },
 
         photoURL(){
             return this.$store.state.activeContact.photoURL;

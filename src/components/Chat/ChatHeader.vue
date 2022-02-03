@@ -1,14 +1,14 @@
 <template>
-  <div v-if="this.$store.state.activeContact" style="background: rgba(0, 0, 0, 0.03)" class="ml-0 pa-1">
+  <div v-if="activeContact" style="background: rgba(0, 0, 0, 0.03)" class="ml-0 pa-1">
     <v-card-text class="d-flex">
-      <div class="d-flex">
+      <div class="d-flex" >
         <img
-          :src="this.$store.state.activeContact.photoURL"
+          :src="photoURL"
           style="width: 40px; height: 40px; border-radius: 20px"
         />
         <div>
           <label class="my-auto ml-2 font-weight-medium"
-            >{{ this.$store.state.activeContact.displayName }}</label
+            >{{ displayName }}</label
           ><br />
           <label class="ml-2">Active</label>
         </div>
@@ -17,7 +17,7 @@
       <v-spacer></v-spacer>
 
       <div class="my-auto">
-        <div class="d-flex">
+        <div class="d-flex" >
           <v-btn elevation="0" width="25" height="25" class="mr-4" fab>
             <v-icon dark> mdi-magnify </v-icon>
           </v-btn>
@@ -59,6 +59,22 @@ export default {
 
   components : {
     ContactInfo
+  },
+
+  computed : {
+
+    activeContact(){
+      return this.$store.state.activeContact;
+    },
+
+    photoURL(){
+      return this.$store.state.activeContact.photoURL;
+    },
+
+    displayName(){
+      return this.$store.state.activeContact.displayName;
+    },
+
   },
     
   data(){

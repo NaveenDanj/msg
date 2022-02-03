@@ -1,5 +1,5 @@
 <template>
-  <div class="pa-5 pb-0 d-flex" style="width: 100%; height: 10vh">
+  <div v-if="activeContact" class="pa-5 pb-0 d-flex" style="width: 100%; height: 10vh">
     <v-text-field
       v-model="message"
       @keydown.enter="senMessage"
@@ -23,6 +23,15 @@
 import { getFirestore, addDoc, collection } from "firebase/firestore";
 
 export default {
+
+  computed : {
+
+    activeContact(){
+      return this.$store.state.activeContact;
+    }
+
+  },
+
   data() {
     return {
       message: "",
