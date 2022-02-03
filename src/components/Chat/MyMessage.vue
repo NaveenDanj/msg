@@ -16,7 +16,7 @@
       <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
         >You</label
       ><label style="color: gray; font-size: 12px" class="my-auto ml-2 mr-2"
-        >06:37pm</label
+        >{{ formatDateTime(item.timeStamp) }}</label
       >
       <img
         style="width: 32px; height: 32px; border-radius: 16px"
@@ -27,7 +27,21 @@
 </template>
 
 <script>
+
+import moment from 'moment';
+
 export default {
-    props : ['item']
+  props : ['item'],
+
+  methods : {
+
+    formatDateTime(date){
+      return moment( new Date(date.seconds * 1000)).format('MMMM Do YYYY, h:mm a');
+    }
+
+
+  }
+
+
 }
 </script>

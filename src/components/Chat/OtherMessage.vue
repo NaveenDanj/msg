@@ -15,14 +15,28 @@
       <label style="font-size: 12px" class="font-weight-medium my-auto ml-3"
         >{{ this.$store.state.activeContact.displayName }}</label
       ><label style="color: gray; font-size: 12px" class="my-auto ml-2"
-        >06:37pm</label
+        >{{formatDateTime(item.timeStamp)}}</label
       >
     </div>
   </div>
 </template>
 
 <script>
+
+import moment from 'moment';
+
 export default {
-    props : ['item']
+  props : ['item'],
+
+  methods : {
+
+    formatDateTime(date){
+      return moment( new Date(date.seconds * 1000)).format('MMMM Do YYYY, h:mm a');
+    }
+
+
+  }
+
+
 }
 </script>

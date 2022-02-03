@@ -59,7 +59,7 @@
       </v-list>
     </div>
 
-    <div class="mt-5">
+    <!-- <div class="mt-5">
       <div class="d-flex justify-space-between">
         <h5>CHANNELS</h5>
         <v-btn
@@ -75,15 +75,6 @@
         </v-btn>
       </div>
 
-      <!-- <div class="mt-5">
-
-            <div v-for="(item , index) in [1,2,3,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3]" :key="index" class="d-flex mb-3">
-              <v-icon style="width : 20px; height: 20px; border-radius : 10px;" >mdi-pound</v-icon>
-              <label class="my-auto ml-2">Naveen Dhananjaya</label>
-            </div>
-            
-          </div> -->
-
       <v-list nav dense class="mt-5">
         <v-list-item
           v-for="(item, index) in [1, 2, 3, 4, 4]"
@@ -92,7 +83,6 @@
           class="ma-0"
         >
           <v-list-item-icon>
-            <!-- <img src="https://avatars.githubusercontent.com/u/48654030?v=4" style="width : 30px; height: 30px; border-radius : 15px;" /> -->
             <v-icon style="width: 20px; height: 20px; border-radius: 10px"
               >mdi-pound</v-icon
             >
@@ -103,7 +93,8 @@
           >
         </v-list-item>
       </v-list>
-    </div>
+      
+    </div> -->
   </v-container>
 </template>
 
