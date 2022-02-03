@@ -41,6 +41,12 @@
                         <label style="font-size : 15px; font-weight : bold;" >Description</label>
                         <p>{{description}}</p>
                     </div>
+
+                    <!-- <v-list class="mt-5">
+                        <v-list-item class="" link v-for="(item, index) in items" :key="index">
+                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        </v-list-item>
+                    </v-list> -->
                     
                 </v-card-text>
 
@@ -56,6 +62,18 @@
 
 <script>
 export default {
+
+    data(){
+
+        return {
+            items: [
+                { title: 'Add to favourit' },
+                { title: 'Delete Chat' },
+                { title: 'Block User' },
+            ],
+        }
+
+    },
 
     
     computed : {
