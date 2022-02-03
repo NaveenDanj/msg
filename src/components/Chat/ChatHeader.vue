@@ -10,7 +10,7 @@
           <label class="my-auto ml-2 font-weight-medium"
             >{{ displayName }}</label
           ><br />
-          <label class="ml-2">Active</label>
+          <label class="ml-2">{{ active == false ? 'Offline' : 'Online' }}</label>
         </div>
       </div>
 
@@ -73,6 +73,10 @@ export default {
 
     displayName(){
       return this.$store.state.activeContact.displayName;
+    },
+
+    active(){
+      return this.$store.state.activeContact.active;
     },
 
   },
