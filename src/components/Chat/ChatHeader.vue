@@ -18,9 +18,9 @@
 
       <div class="my-auto">
         <div class="d-flex" >
-          <v-btn elevation="0" width="25" height="25" class="mr-4" fab>
+          <!-- <v-btn elevation="0" width="25" height="25" class="mr-4" fab>
             <v-icon dark> mdi-magnify </v-icon>
-          </v-btn>
+          </v-btn> -->
 
           <ContactInfo />
 
@@ -40,11 +40,13 @@
             </template>
 
             <v-list>
-              <v-list-item v-for="(item, index) in items" :key="index">
+              <v-list-item link v-for="(item, index) in items" :key="index">
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-menu>
+
+
         </div>
       </div>
     </v-card-text>
@@ -86,10 +88,9 @@ export default {
     return {
 
       items: [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' },
+        { title: 'Add to favourit' },
+        { title: 'Delete Chat' },
+        { title: 'Block User' },
       ],
 
     }
