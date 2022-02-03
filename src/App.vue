@@ -48,6 +48,7 @@
 </template>
 
 <script>
+
 export default {
   name: "App",
 
@@ -57,7 +58,7 @@ export default {
 
   methods : {
 
-    navigateSideBar(route){
+    async navigateSideBar(route){
 
       this.$store.commit('setActiveSideBar' , route);
 

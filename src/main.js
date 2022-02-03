@@ -7,7 +7,7 @@ import app from './FirebaseConfig';
 import VueChatScroll from 'vue-chat-scroll';
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { doc, getFirestore , getDoc } from "firebase/firestore";
+import { doc, getFirestore , getDoc , updateDoc } from "firebase/firestore";
 
 
 const auth = getAuth();
@@ -17,6 +17,13 @@ onAuthStateChanged(auth, async (user) => {
     const db = getFirestore();
 
     try{
+
+      const userRef = doc(db, "users", user.uid);
+
+      await updateDoc(userRef, {
+        active: true
+      });
+
 
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
