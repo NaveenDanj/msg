@@ -113,45 +113,7 @@
         </v-expansion-panel-header>
 
 
-        <v-expansion-panel-content class="pa-3">
-
-          <div class="d-flex justify-space-between pa-2" style="border-bottom-width: 1px; border-bottom-color:gray; border-bottom-style:solid">
-
-            <label class="font-weight-medium">Description</label>
-
-            <div style="width : 150px;" >
-              <v-select outlined dense value="Everyone" :items="['Everyone' , 'Nobody']" />
-            </div>
-
-          </div>
-
-          <div class="d-flex justify-space-between pa-2 my-auto" style="border-bottom-width: 1px; border-bottom-color:gray; border-bottom-style:solid">
-
-            <label class="font-weight-medium my-auto">Last Seen</label>
-            <v-switch outlined dense  />
-
-          </div>
-
-          <div class="d-flex justify-space-between pa-2 my-auto" style="border-bottom-width: 1px; border-bottom-color:gray; border-bottom-style:solid">
-
-            <label class="font-weight-medium my-auto">Read Receipt</label>
-            <v-switch outlined dense  />
-
-          </div>
-
-          <div class="d-flex justify-space-between pa-2" style="border-bottom-width: 1px; border-bottom-color:gray; border-bottom-style:solid">
-
-            <label class="font-weight-medium">Group Invite</label>
-
-            <div style="width : 150px;" >
-              <v-select outlined dense value="Everyone" :items="['Everyone' , 'Nobody']" />
-            </div>
-
-          </div>
-
-          
-          
-        </v-expansion-panel-content>
+        <Privacy />
 
 
       </v-expansion-panel>
@@ -234,6 +196,7 @@ import EditAccount from '../components/Models/EditAccount.vue';
 import ResetPassword from '../components/Models/ResetPassword.vue'
 import Request from '../components/Models/Request.vue';
 import Loading from '../components/Models/Loading.vue'
+import Privacy from '../components/Settings/Privacy.vue';
 
 import { getAuth, signOut , updateProfile  } from "firebase/auth";
 import { getStorage, ref , uploadBytes , getDownloadURL } from "firebase/storage";
@@ -246,7 +209,8 @@ export default {
     EditAccount,
     Request,
     ResetPassword,
-    Loading
+    Loading,
+    Privacy
   },
 
   data(){
