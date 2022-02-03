@@ -36,7 +36,8 @@ export default {
   methods : {
 
     formatDateTime(date){
-      return moment( new Date(date.seconds * 1000)).format('MMMM Do YYYY, h:mm a');
+      let time = moment( new Date(date.seconds * 1000)).format('MMMM Do YYYY, h:mm a');
+      return moment(time , 'MMMM Do YYYY, h:mm a').fromNow();
     }
 
 
