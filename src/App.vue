@@ -37,6 +37,13 @@
           <v-list-item-title>Sta  rred</v-list-item-title>
         </v-list-item>
 
+        <v-list-item link @click="handleRefresh">
+          <v-list-item-icon>
+            <v-icon>mdi-refresh</v-icon>
+          </v-list-item-icon>
+          <v-list-item-title>Sta  rred</v-list-item-title>
+        </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
 
@@ -56,12 +63,24 @@ export default {
     mini: false,
   }),
 
+  mounted(){
+
+    this.$root.$on('forceRefresh', function() {
+      this.$forceUpdate();
+    })
+
+  },
+
   methods : {
 
     async navigateSideBar(route){
 
       this.$store.commit('setActiveSideBar' , route);
 
+    },
+
+    handleRefresh(){
+      this.$root.$emit('forceRefresh', true)
     }
 
   }

@@ -40,9 +40,19 @@
             </template>
 
             <v-list>
-              <v-list-item link v-for="(item, index) in items" :key="index">
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              
+              <v-list-item link>
+                <v-list-item-title @click="toggleAddtoFavourite">{{ favouteLinkText }}</v-list-item-title>
               </v-list-item>
+
+              <v-list-item link>
+                <v-list-item-title>Block contact</v-list-item-title>
+              </v-list-item>
+
+              <v-list-item link>
+                <v-list-item-title>Delete chat</v-list-item-title>
+              </v-list-item>
+
             </v-list>
           </v-menu>
 
@@ -56,8 +66,19 @@
 <script>
 
 import ContactInfo from './ContactInfo.vue'
+import { doc, updateDoc , getFirestore , getDoc } from "firebase/firestore";
 
 export default {
+
+  watch : {
+
+    "$store.state.activeContact" : function(){
+      this.getFavouriteContact();
+      console.log('changed!' , this.favouteLinkText);
+      this.$forceUpdate();
+    }
+
+  },
 
   components : {
     ContactInfo
@@ -87,11 +108,66 @@ export default {
 
     return {
 
-      items: [
-        { title: 'Add to favourit' },
-        { title: 'Delete Chat' },
-        { title: 'Block User' },
-      ],
+      favouteLinkText : 'Add to favourite'
+
+    }
+
+  },
+
+  methods : {
+
+    async toggleAddtoFavourite(){
+
+      try{
+
+        const db = getFirestore();
+
+        const contactRef = doc(db, "contact", this.$store.state.currentUser.uid , 'contacts' , this.$store.state.activeContact.userid);
+        
+        const docSnap = await getDoc(contactRef);
+
+        if(docSnap.exists()){
+
+          await updateDoc(contactRef , {
+            favourite : !docSnap.data().favourite
+          });
+
+          this.getFavouriteContact();
+          this.$root.$emit('forceRefresh', true);
+
+        }
+
+  
+      }catch(e){
+        console.log(e);
+      }
+
+    },
+
+    async getFavouriteContact(){
+
+      try{
+
+        const db = getFirestore();
+
+        const contactRef = doc(db, "contact", this.$store.state.currentUser.uid , 'contacts' , this.$store.state.activeContact.userid);
+        
+        const docSnap = await getDoc(contactRef);
+
+        if(docSnap.exists()){
+  
+          if (docSnap.data().favourite == true){
+            this.favouteLinkText = 'Remove from favourite';
+          }else{
+            this.favouteLinkText = 'Add to favourite';
+          }
+  
+        }
+
+  
+      }catch(e){
+        console.log(e);
+      }
 
     }
 

@@ -117,36 +117,12 @@ export default {
 
   },
 
-  async mounted(){
+  async created(){
 
-    try{
-      const db = getFirestore();
-      const docRef = collection(db, "contact", this.$store.state.currentUser.uid , 'contacts');
-      const docSnapshot = await getDocs(docRef);
 
-      docSnapshot.forEach( async (docData) => {
-        
-        let user_id = docData.data().userId;
+    this.$root.$on('forceRefresh', this.handleRunner);
 
-        let userRef = doc(db, "users", user_id );
-        let userSnap = await getDoc(userRef);
-
-        if(userSnap.exists()){
-
-          if(docData.data().favourite){
-            this.favourite_contacts.push(userSnap.data());
-          }else{
-            this.direct_contacts.push(userSnap.data());
-          }
-
-        }
-
-      });
-
-    }catch(err){
-      console.log(err);
-    }
-
+    this.fetchContacts();
 
   },
 
@@ -160,6 +136,46 @@ export default {
       this.$store.commit('resetActiveContact');
       this.$store.commit('resetActiveMessages');
       this.$store.commit('setActiveContact' , user);
+    },
+
+    handleRunner(){
+      this.$forceUpdate();
+      console.log('running on different component');
+      this.fetchContacts();
+    },
+
+    async fetchContacts(){
+
+      this.direct_contacts = [];
+      this.favourite_contacts = [];
+
+      try{
+        const db = getFirestore();
+        const docRef = collection(db, "contact", this.$store.state.currentUser.uid , 'contacts');
+        const docSnapshot = await getDocs(docRef);
+
+        docSnapshot.forEach( async (docData) => {
+          
+          let user_id = docData.data().userId;
+
+          let userRef = doc(db, "users", user_id );
+          let userSnap = await getDoc(userRef);
+
+          if(userSnap.exists()){
+
+            if(docData.data().favourite){
+              this.favourite_contacts.push(userSnap.data());
+            }else{
+              this.direct_contacts.push(userSnap.data());
+            }
+
+          }
+
+        });
+
+      }catch(err){
+        console.log(err);
+      }
     }
 
   }
