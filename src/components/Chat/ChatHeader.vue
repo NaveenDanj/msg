@@ -45,11 +45,11 @@
                 <v-list-item-title @click="toggleAddtoFavourite">{{ favouteLinkText }}</v-list-item-title>
               </v-list-item>
 
-              <v-list-item link>
+              <v-list-item disabled link>
                 <v-list-item-title>Block contact</v-list-item-title>
               </v-list-item>
 
-              <v-list-item link>
+              <v-list-item disabled link>
                 <v-list-item-title>Delete chat</v-list-item-title>
               </v-list-item>
 

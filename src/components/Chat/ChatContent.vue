@@ -89,7 +89,9 @@ export default {
       onSnapshot(q , (messageSnap) => {
         this.$store.commit('resetActiveMessages');
         messageSnap.forEach((doc) => {
-          this.$store.commit('setActiveMessages' , doc.data());
+          let document = doc.data();
+          document.id = doc.id;
+          this.$store.commit('setActiveMessages' , document);
         })
       });
 
